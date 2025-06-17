@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mentes Fuertes, Redes Conscientes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Estilos Generales */
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f4f7f6; /* Fondo claro */
+      color: #333; /* Texto oscuro */
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased; /* Suavizado de fuentes para mejor legibilidad */
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Encabezado */
+    header {
+      background-color: #3778c2; /* Color primario: azul vibrante */
+      color: #fff;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    /* Navegación */
+    nav {
+      position: relative;
+    }
+
+    .menu-icon {
+      cursor: pointer;
+      font-size: 1.75rem;
+      color: #fff;
+      display: none; /* Oculto en pantallas grandes, visible en móviles */
+    }
+
+    nav ul {
+      display: flex; /* Menú horizontal por defecto */
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 1.5rem; /* Espaciado entre elementos del menú */
+    }
+
+    nav ul li:first-child {
+      margin-left: 0;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease-in-out; /* Transición suave al pasar el ratón */
+    }
+
+    nav ul li a:hover {
+      color: #a8dadc; /* Color de acento al pasar el ratón */
+    }
+
+    /* Menú Móvil */
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block; /* Muestra el icono de menú en móviles */
+      }
+
+      nav ul {
+        display: none; /* Oculta el menú por defecto en móviles */
+        position: absolute;
+        top: 100%; /* Debajo del encabezado */
+        right: 0;
+        background-color: #3778c2;
+        flex-direction: column; /* Elementos del menú en columna */
+        width: 150px;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 10; /* Asegura que esté sobre otros elementos */
+      }
+
+      nav:hover ul { /* Mostrar menú al pasar el ratón sobre 'nav' (en móviles, al hacer clic en el icono se podría manejar con JS) */
+        display: block;
+      }
+
+      nav ul li {
+        margin: 0.75rem 0;
+        text-align: right;
+      }
+
+      nav ul li:first-child {
+        margin-top: 0;
+      }
+    }
+
+    /* Sección Principal (Dividida) */
+    .split-section {
+      display: grid; /* Usa CSS Grid para un control flexible */
+      grid-template-columns: 1fr 1fr; /* Dos columnas de igual ancho */
+      min-height: calc(100vh - 80px); /* Ocupa casi toda la altura de la vista (ajusta 80px según altura real del header) */
+    }
+
+    @media (max-width: 768px) {
+      .split-section {
+        grid-template-columns: 1fr; /* Una sola columna en móviles */
+        min-height: auto; /* Altura automática en móviles */
+      }
+    }
+
+    .left, .right {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .left {
+      background-color: #a8dadc; /* Color secundario: verde azulado claro */
+      color: #333;
+    }
+
+    .right {
+      background-color: #457b9d; /* Tono más oscuro del primario */
+      color: #fff;
+    }
+
+    .left h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #1d3557; /* Azul oscuro */
+    }
+
+    .images {
+      display: flex;
+      gap: 1.5rem; /* Espacio entre imágenes */
+      margin-bottom: 2rem;
+    }
+
+    .images img {
+      width: 150px;
+      border-radius: 0.75rem; /* Bordes redondeados */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out; /* Animación al pasar el ratón */
+      object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    }
+
+    .images img:hover {
+      transform: scale(1.05); /* Ligeramente más grande al pasar el ratón */
+    }
+
+    .button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: #1d3557; /* Azul oscuro */
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .button:hover {
+      background-color: #457b9d; /* Cambio de color al pasar el ratón */
+    }
+
+    .right img {
+      max-width: 80%; /* Ajusta el tamaño de la imagen */
+      height: auto;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    }
+
+    /* Secciones de Información (Misión, Visión, Recursos, Contacto) */
+    section.info {
+      padding: 3rem 2rem;
+      background-color: #f9f9f9; /* Fondo muy claro */
+      color: #333;
+      text-align: center;
+    }
+
+    section.info h2 {
+      font-size: 2rem;
+      color: #3778c2; /* Azul primario para títulos */
+      margin-bottom: 1.5rem;
+    }
+
+    section.info p {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    .recursos a {
+      display: inline-block;
+      margin: 0.75rem 1.25rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #3778c2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .recursos a:hover {
+      background-color: #457b9d;
+    }
+
+    .contacto a {
+      display: inline-block;
+      margin: 1rem;
+      color: #3778c2;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .contacto a:hover {
+      color: #457b9d;
+    }
+
+    /* Panel de Administrador */
+    .admin-panel {
+      display: none; /* Oculto por defecto */
+      padding: 2rem;
+      background-color: #2c3e50; /* Fondo oscuro para el panel */
+      color: #fff;
+      border-top: 2px solid #3778c2; /* Borde superior con color primario */
+    }
+
+    .admin-panel h2 {
+      color: #f39c12; /* Color de acento para el título del admin */
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-panel label, .admin-panel textarea, .admin-panel input, .admin-panel button {
+      display: block;
+      width: 100%;
+      margin: 0.75rem 0;
+      padding: 0.75rem;
+      border: 1px solid #444;
+      border-radius: 0.25rem;
+      box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+      font-family: inherit;
+      font-size: 1rem;
+      background-color: #34495e; /* Fondo de campos de entrada */
+      color: #fff;
+    }
+
+    .admin-panel textarea {
+      height: 150px;
+      resize: vertical; /* Permite redimensionar verticalmente */
+    }
+
+    .admin-panel button {
+      background-color: #f39c12; /* Color de acento para el botón de publicar */
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .admin-panel button:hover {
+      background-color: #e67e22;
+    }
+
+    .admin-panel button:last-child { /* Botón de cerrar sesión */
+      background-color: #e74c3c; /* Rojo para cerrar sesión */
+    }
+
+    .admin-panel button:last-child:hover {
+      background-color: #c0392b;
+    }
+
+    /* Diseño en fila de publicaciones */
+    #contenido-dinamico {
+      display: grid; /* Usa CSS Grid para las tarjetas */
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Columnas responsivas */
+      gap: 1.5rem; /* Espacio entre tarjetas */
+      padding: 2rem;
+      box-sizing: border-box;
+      background-color: #e9ecef; /* Fondo gris claro para el área de contenido */
+    }
+
+    .contenido-item {
+      background: #fff;
+      border-radius: 0.75rem; /* Bordes redondeados para las tarjetas */
+      padding: 1.25rem;
+      box-sizing: border-box;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out; /* Animación al pasar el ratón */
+    }
+
+    .contenido-item:hover {
+      transform: translateY(-5px); /* Ligeramente elevado al pasar el ratón */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+    }
+
+    .contenido-item p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .contenido-item img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      margin-top: 0.75rem;
+      object-fit: cover;
+      display: block; /* Evita espacio extra debajo de la imagen */
+    }
+
+    /* Botones de Editar/Eliminar en Admin */
+    .btn-delete, .btn-edit {
+      position: absolute;
+      top: 0.75rem;
+      background: #e74c3c; /* Rojo para eliminar */
+      color: #fff;
+      border: none;
+      border-radius: 0.3rem;
+      padding: 0.35rem 0.7rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+      opacity: 0; /* Ocultos por defecto */
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    .btn-edit {
+      right: 3.5rem; /* Posición del botón de editar */
+      background: #f39c12; /* Naranja para editar */
+    }
+
+    .btn-delete {
+      right: 0.75rem; /* Posición del botón de eliminar */
+    }
+
+    /* Mostrar botones de admin al pasar el ratón o cuando el admin está activo */
+    .contenido-item:hover .btn-delete,
+    .contenido-item:hover .btn-edit,
+    .admin-activo .contenido-item .btn-delete,
+    .admin-activo .contenido-item .btn-edit {
+      opacity: 1;
+    }
+
+    /* Responsivo para el contenido dinámico */
+    @media (max-width: 768px) {
+      #contenido-dinamico {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Mínimo 250px en tabletas */
+      }
+    }
+
+    @media (max-width: 480px) {
+      #contenido-dinamico {
+        grid-template-columns: 1fr; /* Una sola columna en teléfonos */
+      }
+      .left h2 {
+        font-size: 2rem;
+      }
+      .left, .right {
+        padding: 2rem;
+      }
+      .images img {
+        width: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mentes Fuertes, Redes Conscientes</h1>
+    <nav>
+      <div class="menu-icon">☰</div>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#mision">Misión</a></li>
+        <li><a href="#vision">Visión</a></li>
+        <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#admin" onclick="mostrarModal()">Administrador</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="split-section">
+    <section class="left">
+      <h2>Descubre tu Fortaleza</h2>
+      <div class="images">
+        <img src="imgmoti.png" alt="Crecimiento Personal" />
+      </div>
+      <button class="button" onclick="document.getElementById('contenido-dinamico').scrollIntoView({behavior: 'smooth'})">Explorar</button>
+    </section>
+    <section class="right">
+      <img src="imgcel.png" alt="Conexión Consciente" />
+    </section>
+  </main>
+
+  <section id="contenido-dinamico"></section>
+
+  <section class="admin-panel" id="admin-panel" style="display: none;">
+    <h2>Panel del Administrador</h2>
+    <form onsubmit="publicarContenido(event)">
+      <label for="texto">Mensaje motivacional:</label>
+      <textarea id="texto" required></textarea>
+      <label for="imagen">Sube una imagen (opcional):</label>
+      <input type="file" id="imagen" accept="image/*" />
+      <button type="submit">Publicar</button>
+    </form>
+    <button onclick="cerrarSesion()">Cerrar sesión</button>
+  </section>
+
+  <section id="mision" class="info">
+  <h2>Misión</h2>
+  <p>
+    Impulsar el bienestar emocional y el desarrollo personal de los jóvenes mediante contenidos digitales que inspiran, informan y fortalecen la mente. Nuestra misión es crear un espacio seguro y consciente en redes sociales, donde cada publicación sea una oportunidad para crecer, conectar y transformar pensamientos en acciones positivas.
+  </p>
+
+  <div class="carrusel" style="
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+    margin: 2rem auto;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    border-top: 2px solid #bbb;
+    border-bottom: 2px solid #bbb;
+  ">
+    <!-- Decorativos laterales minimalistas -->
+    <div style="
+      position: absolute;
+      top: 50%;
+      left: -20px;
+      width: 12px;
+      height: 12px;
+      background: #bbb;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    "></div>
+    <div style="
+      position: absolute;
+      top: 50%;
+      right: -20px;
+      width: 12px;
+      height: 12px;
+      background: #bbb;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    "></div>
+
+    <div class="slides" style="
+      display: flex;
+      width: 1800px; /* 600px x 3 imágenes */
+      height: 400px;
+      animation: deslizar 12s infinite ease-in-out;
+    ">
+      <img src="carrusel1.jpg" alt="Inspiración" style="
+        width: 600px;
+        height: 400px;
+        object-fit: cover;
+        flex-shrink: 0;
+      ">
+      <img src="carrusel2.jpg" alt="Apoyo emocional" style="
+        width: 600px;
+        height: 400px;
+        object-fit: cover;
+        flex-shrink: 0;
+      ">
+      <img src="carrusel3.jpg" alt="Crecimiento personal" style="
+        width: 600px;
+        height: 400px;
+        object-fit: cover;
+        flex-shrink: 0;
+      ">
+    </div>
+  </div>
+
+  <style>
+    @keyframes deslizar {
+      0%   { transform: translateX(0); }
+      33%  { transform: translateX(-600px); }
+      66%  { transform: translateX(-1200px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</section>
+
+
+
+
+<section id="vision" class="info" style="
+  width: 95vw;
+  max-width: 1400px;
+  margin: 3rem auto;
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+">
+  <div style="flex: 1;">
+    <h2 style="
+      font-size: 2.5rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+    ">Visión</h2>
+    <p style="
+      font-size: 1.4rem;
+      line-height: 1.7;
+    ">
+      Ser una comunidad digital de apoyo emocional reconocida por su impacto positivo en la vida de los jóvenes de habla hispana.
+    </p>
+  </div>
+  <div style="flex: 1;">
+    <img src="img1.jpg" alt="Imagen de visión" style="
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 1rem;
+    ">
+  </div>
+</section>
+
+
+
+<section id="recursos" style="
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    padding: 4rem 1rem;
+    text-align: center;
+    color: #333;
+">
+    <div style="max-width: 1100px; margin: 0 auto;">
+        <h2 style="
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            position: relative;
+        ">
+            Recursos Exclusivos para Descargar
+            <span style="
+                display: block;
+                width: 80px;
+                height: 4px;
+                background-color: #3498db;
+                margin: 10px auto 0;
+                border-radius: 2px;
+            "></span>
+        </h2>
+
+        <p style="
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        ">
+            Explora nuestra colección de guías y materiales útiles diseñados para potenciar tu bienestar y conocimiento. ¡Descarga lo que necesites!
+        </p>
+
+        <div style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            justify-content: center;
+        ">
+            <div style="
+                background-color: #ffffff;
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+                padding: 2.5rem 1.5rem;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                min-height: 220px;
+            "
+            onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 25px rgba(0, 0, 0, 0.15)';"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.08)';">
+                <h3 style="
+                    font-size: 1.6rem;
+                    color: #34495e;
+                    margin-bottom: 1.5rem;
+                    font-weight: 600;
+                ">Guía de Bienestar Integral</h3>
+                <p style="font-size: 1rem; color: #666; margin-bottom: 2rem;">
+                    Una guía completa para reducir el estres.
+                </p>
+                <a href="guia1.pdf" download style="
+                    display: inline-block;
+                    background-color: #3498db;
+                    color: #fff;
+                    padding: 0.9rem 2rem;
+                    border-radius: 30px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    font-size: 1.05rem;
+                    transition: background-color 0.3s ease, transform 0.2s ease;
+                "
+                onmouseover="this.style.backgroundColor='#2980b9'; this.style.transform='scale(1.03)';"
+                onmouseout="this.style.backgroundColor='#3498db'; this.style.transform='scale(1)';">
+                    Descargar Guía 1
+                </a>
+            </div>
+
+            <div style="
+                background-color: #ffffff;
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+                padding: 2.5rem 1.5rem;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                min-height: 220px;
+            "
+            onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 25px rgba(0, 0, 0, 0.15)';"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.08)';">
+                <h3 style="
+                    font-size: 1.6rem;
+                    color: #34495e;
+                    margin-bottom: 1.5rem;
+                    font-weight: 600;
+                ">Guía para un mejor balance</h3>
+                <p style="font-size: 1rem; color: #666; margin-bottom: 2rem;">
+                    Para mejorar nuestro bienestar mental y emocional.
+                </p>
+                <a href="guia2.pdf" download style="
+                    display: inline-block;
+                    background-color: #3498db;
+                    color: #fff;
+                    padding: 0.9rem 2rem;
+                    border-radius: 30px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    font-size: 1.05rem;
+                    transition: background-color 0.3s ease, transform 0.2s ease;
+                "
+                onmouseover="this.style.backgroundColor='#2980b9'; this.style.transform='scale(1.03)';"
+                onmouseout="this.style.backgroundColor='#3498db'; this.style.transform='scale(1)';">
+                    Descargar Guía 2
+                </a>
+            </div>
+
+            </div>
+    </div>
+</section>
+
+
+<section id="contacto" style="
+    font-family: 'Poppins', sans-serif; /* Fuente más moderna */
+    background-color: #2c3e50; /* Fondo oscuro elegante */
+    color: #ecf0f1; /* Texto claro */
+    padding: 5rem 1.5rem; /* Más espacio vertical */
+    text-align: center;
+    max-width: 100%; /* Ancho completo */
+    margin: 0; /* Elimina márgenes externos por defecto */
+    box-sizing: border-box; /* Incluye padding y borde en el ancho/alto */
+    display: flex; /* Usar flexbox para alinear el contenido y el chat */
+    justify-content: center; /* Centrar el contenido horizontalmente */
+    align-items: flex-start; /* Alinear elementos al inicio verticalmente */
+    gap: 2rem; /* Espacio entre el contenido principal y el chat */
+">
+    <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="
+            font-size: 3.2rem; /* Título más grande */
+            color: #ecf0f1;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Sombra para el título */
+        ">
+            Conecta con Nosotros
+            <span style="
+                display: block;
+                width: 100px;
+                height: 5px;
+                background-color: #3498db; /* Línea decorativa azul */
+                margin: 15px auto 0;
+                border-radius: 3px;
+            "></span>
+        </h2>
+
+        <p style="
+            font-size: 1.3rem; /* Texto más legible */
+            margin-bottom: 3.5rem;
+            line-height: 1.8;
+            color: #bdc3c7; /* Color de texto ligeramente más suave */
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        ">
+            Síguenos en nuestras redes sociales para estar al tanto de nuestras últimas actualizaciones, consejos y contenido exclusivo. ¡Nos encantaría verte por ahí!
+        </p>
+
+        <div class="social-icons" style="
+            display: flex;
+            justify-content: center;
+            gap: 40px; /* Mayor espacio entre íconos */
+            margin-top: 3rem;
+        ">
+            <a href="https://www.instagram.com/iam_erikmora?igsh=eGVkb2xwOGx2eWRt" target="_blank" style="
+                color: #ecf0f1; /* Color inicial blanco/gris claro */
+                font-size: 55px; /* Íconos grandes y prominentes */
+                transition: transform 0.3s ease, color 0.3s ease;
+                text-decoration: none; /* Eliminar subrayado */
+                display: inline-block; /* Para asegurar que transform funciona bien */
+            "
+            onmouseover="this.style.transform='scale(1.15)'; this.style.color='#E1306C'; /* Color representativo de Instagram */"
+            onmouseout="this.style.transform='scale(1)'; this.style.color='#ecf0f1';">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@erik.r.mora.h?_t=ZS-8xGzwfynHBB&_r=1" target="_blank" style="
+                color: #ecf0f1; /* Color inicial blanco/gris claro */
+                font-size: 55px; /* Íconos grandes y prominentes */
+                transition: transform 0.3s ease, color 0.3s ease;
+                text-decoration: none; /* Eliminar subrayado */
+                display: inline-block;
+            "
+            onmouseover="this.style.transform='scale(1.15)'; this.style.color='#69C9D0'; /* Azul TikTok */"
+            onmouseout="this.style.transform='scale(1)'; this.style.color='#ecf0f1';">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+    </div>
+
+    <div id="chat-widget" style="
+        background-color: #34495e; /* Fondo del chat oscuro */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        width: 350px; /* Ancho del chat */
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        color: #ecf0f1;
+        margin-top: 2rem; /* Ajusta la posición vertical del chat */
+    ">
+        <h3 style="
+            font-size: 1.8rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+            text-align: center;
+        ">
+            Chat en Vivo
+        </h3>
+        <!-- Dentro del div #chat-widget, justo después del h3 -->
+<h4 style="
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ecf0f1;
+    text-align: center;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+">
+    Cuéntanos tu experiencia o desahógate
+</h4>
+<!-- Vista previa del mensaje que estás respondiendo -->
+<div id="reply-preview" style="
+    display: none;
+    background-color: #3c5870;
+    padding: 0.5rem;
+    border-left: 4px solid #3498db;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #ecf0f1;
+    margin-bottom: 0.5rem;
+    position: relative;
+">
+    <span id="reply-to-text"></span>
+    <button onclick="cancelReply()" style="
+        position: absolute;
+        top: 5px;
+        right: 8px;
+        background: none;
+        border: none;
+        color: #ecf0f1;
+        font-size: 1rem;
+        cursor: pointer;
+    ">&times;</button>
+</div>
+
+
+        <div id="chat-messages" style="
+            background-color: #2c3e50; /* Fondo de mensajes */
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 200px;
+            max-height: 300px;
+            overflow-y: auto; /* Scroll si hay muchos mensajes */
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            text-align: left; /* Alinea el texto de los mensajes a la izquierda */
+        ">
+            </div>
+        <input type="text" id="chat-name" placeholder="Tu Nombre" style="
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        ">
+        <textarea id="chat-message" placeholder="Escribe tu mensaje..." style="
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            font-size: 1rem;
+            min-height: 60px;
+            resize: vertical; /* Permite redimensionar verticalmente */
+            margin-bottom: 0.5rem;
+        "></textarea>
+        <button id="chat-send" style="
+            background-color: #3498db;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        "
+        onmouseover="this.style.backgroundColor='#2980b9';"
+        onmouseout="this.style.backgroundColor='#3498db';">
+            Enviar
+        </button>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const chatMessages = document.getElementById('chat-messages');
+        const chatNameInput = document.getElementById('chat-name');
+        const chatMessageInput = document.getElementById('chat-message');
+        const chatSendButton = document.getElementById('chat-send');
+        const replyPreview = document.getElementById('reply-preview');
+        const replyToText = document.getElementById('reply-to-text');
+
+        let replyTo = null; // Guarda el mensaje al que se está respondiendo
+
+        function loadMessages() {
+            const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+            chatMessages.innerHTML = '';
+
+            messages.forEach((msg, index) => {
+                const messageElement = document.createElement('div');
+                messageElement.style.textAlign = 'center';
+                messageElement.style.backgroundColor = '#2c3e50';
+                messageElement.style.padding = '0.5rem';
+                messageElement.style.borderRadius = '5px';
+                messageElement.style.position = 'relative';
+
+                let replyHTML = '';
+                if (msg.replyTo) {
+                    replyHTML = `
+                        <div style="
+                            font-size: 0.85rem;
+                            color: #bdc3c7;
+                            border-left: 3px solid #3498db;
+                            padding-left: 0.5rem;
+                            margin-bottom: 0.4rem;
+                            text-align: left;
+                        ">
+                            <strong>@${msg.replyTo.name}:</strong> ${msg.replyTo.message}
+                        </div>
+                    `;
+                }
+
+                messageElement.innerHTML = `
+                    ${replyHTML}
+                    <div style="text-align: left;">
+                        <strong style="color: #3498db;">${msg.name}:</strong> ${msg.message}
+                    </div>
+                    <button style="
+                        position: absolute;
+                        bottom: 5px;
+                        right: 10px;
+                        font-size: 0.8rem;
+                        background-color: transparent;
+                        color: #95a5a6;
+                        border: none;
+                        cursor: pointer;
+                        text-decoration: underline;
+                    " onclick="replyToMessage(${index})">↩ Responder</button>
+                `;
+                chatMessages.appendChild(messageElement);
+            });
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        window.replyToMessage = function(index) {
+            const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+            replyTo = messages[index];
+
+            replyToText.innerHTML = `<strong>@${replyTo.name}:</strong> ${replyTo.message}`;
+            replyPreview.style.display = 'block';
+            chatMessageInput.focus();
+        };
+
+        window.cancelReply = function() {
+            replyTo = null;
+            replyPreview.style.display = 'none';
+            replyToText.innerHTML = '';
+        };
+
+        function saveMessage(name, message) {
+            const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+            const newMessage = {
+                name,
+                message,
+                timestamp: new Date().toISOString(),
+                replyTo: replyTo ? { name: replyTo.name, message: replyTo.message } : null
+            };
+            messages.push(newMessage);
+            localStorage.setItem('chatMessages', JSON.stringify(messages));
+            replyTo = null;
+            cancelReply();
+            loadMessages();
+        }
+
+        chatSendButton.addEventListener('click', () => {
+            const name = chatNameInput.value.trim();
+            const message = chatMessageInput.value.trim();
+
+            if (name && message) {
+                saveMessage(name, message);
+                chatMessageInput.value = '';
+            } else {
+                alert('Por favor, ingresa tu nombre y un mensaje.');
+            }
+        });
+
+        loadMessages();
+    });
+</script>
+
+
+
+  <!-- 🔐 Modal de contraseña oculto al inicio -->
+  <div id="modal-password"
+       style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+              background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: #fff; padding: 2rem; border-radius: 1rem; text-align: center; width: 300px;">
+      <h3>Acceso administrador</h3>
+      <input id="input-password" type="password" placeholder="Contraseña"
+             style="width: 100%; padding: 0.5rem; margin-top: 1rem; border-radius: 0.5rem; border: 1px solid #ccc;" />
+      <div style="margin-top: 1rem;">
+        <button onclick="verificarPassword()"
+                style="padding: 0.5rem 1rem; background-color: #3778c2; color: white;
+                       border: none; border-radius: 0.5rem; cursor: pointer;">Ingresar</button>
+        <button onclick="cerrarModal()"
+                style="padding: 0.5rem 1rem; background-color: #ccc; border: none;
+                       border-radius: 0.5rem; margin-left: 0.5rem; cursor: pointer;">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let administradorActivo = false;
+
+    function mostrarModal() {
+      const modal = document.getElementById("modal-password");
+      modal.style.display = "flex";
+      document.getElementById("input-password").value = "";
+      document.getElementById("input-password").focus();
+      document.body.style.overflow = "hidden";
+    }
+
+    function cerrarModal() {
+      document.getElementById("modal-password").style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    function verificarPassword() {
+      const clave = document.getElementById("input-password").value;
+      if (clave === "fortaleza2025") {
+        administradorActivo = true;
+        document.body.classList.add("admin-activo");
+        document.getElementById("admin-panel").style.display = "block";
+        mostrarPublicaciones();
+        cerrarModal();
+      } else {
+        alert("Contraseña incorrecta.");
+      }
+    }
+
+    function cerrarSesion() {
+      administradorActivo = false;
+      document.body.classList.remove("admin-activo");
+      document.getElementById("admin-panel").style.display = "none";
+      mostrarPublicaciones();
+    }
+
+    function publicarContenido(e) {
+      e.preventDefault();
+      const texto = document.getElementById("texto").value;
+      const imagenInput = document.getElementById("imagen");
+      const lector = new FileReader();
+
+      if (imagenInput.files.length > 0) {
+        if (!imagenInput.files[0].type.startsWith("image/")) {
+          alert("Solo se permiten archivos de imagen.");
+          return;
+        }
+        lector.onload = () => guardarPublicacion(texto, lector.result);
+        lector.readAsDataURL(imagenInput.files[0]);
+      } else {
+        guardarPublicacion(texto, null);
+      }
+      e.target.reset();
+    }
+
+    function guardarPublicacion(texto, imagen) {
+      const publicaciones = JSON.parse(localStorage.getItem("publicaciones") || "[]");
+      publicaciones.push({ texto, imagen });
+      localStorage.setItem("publicaciones", JSON.stringify(publicaciones));
+      mostrarPublicaciones();
+    }
+
+    function mostrarPublicaciones() {
+      const contenedor = document.getElementById("contenido-dinamico");
+      contenedor.innerHTML = "";
+      const publicaciones = JSON.parse(localStorage.getItem("publicaciones") || "[]");
+
+      publicaciones.forEach((pub, index) => {
+        const item = document.createElement("div");
+        item.className = "contenido-item";
+
+        const p = document.createElement("p");
+        p.textContent = pub.texto;
+        item.appendChild(p);
+
+        if (pub.imagen) {
+          const img = document.createElement("img");
+          img.src = pub.imagen;
+          item.appendChild(img);
+        }
+
+        if (administradorActivo) {
+          const btnDelete = document.createElement("button");
+          btnDelete.className = "btn-delete";
+          btnDelete.textContent = "×";
+          btnDelete.onclick = () => eliminarPublicacion(index);
+
+          const btnEdit = document.createElement("button");
+          btnEdit.className = "btn-edit";
+          btnEdit.textContent = "✎";
+          btnEdit.onclick = () => editarPublicacion(index);
+
+          item.appendChild(btnEdit);
+          item.appendChild(btnDelete);
+        }
+
+        contenedor.appendChild(item);
+      });
+    }
+
+    function eliminarPublicacion(index) {
+      if (!confirm("¿Estás seguro de que deseas eliminar esta publicación?")) return;
+      const publicaciones = JSON.parse(localStorage.getItem("publicaciones") || "[]");
+      publicaciones.splice(index, 1);
+      localStorage.setItem("publicaciones", JSON.stringify(publicaciones));
+      mostrarPublicaciones();
+    }
+
+    function editarPublicacion(index) {
+      const publicaciones = JSON.parse(localStorage.getItem("publicaciones") || "[]");
+      const nuevoTexto = prompt("Editar mensaje:", publicaciones[index].texto);
+      if (nuevoTexto !== null) {
+        publicaciones[index].texto = nuevoTexto;
+        localStorage.setItem("publicaciones", JSON.stringify(publicaciones));
+        mostrarPublicaciones();
+      }
+    }
+
+    window.onload = mostrarPublicaciones;
+  </script>
+</body>
+</html>
